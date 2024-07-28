@@ -35,14 +35,30 @@ export const useProjectsStore = defineStore('projects', () => {
     })
   }
 
+  function addTaskToProject(text:string,id:string){
+    //primero buscamos el project
+   const project = projects.value.find((project)=>{
+    return project.id === id
+   })
+   //una vez encontrado lo creamos el objeto task para guardarlo
+   project?.task.push({
+    id:uuidv4(),
+    name:text,
+    completedAt:new Date()
+   })
+   
+  }
+
   return {
     //properties
-    // projects ,
+    projects ,
 
     //getters
     projectList: computed(() => [...projects.value]),
+    noProjects:computed(()=>projects.value.length === 0),
 
     //actions
-    addProject
+    addProject,
+    addTaskToProject
   }
 })

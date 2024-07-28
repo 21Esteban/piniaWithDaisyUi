@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // @ts-ignore
 import TopMenu from '@/modules/common/components/TopMenu.vue'
+// @ts-ignore
 import SideMenu from '../components/SideMenu.vue'
 </script>
 

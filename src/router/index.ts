@@ -14,6 +14,13 @@ const router = createRouter({
           path: 'projects',
           name: 'projects',
           component: () => import('@/modules/projects/views/ProjectsView.vue')
+        },
+        {
+          path: 'project/:id',
+          name: 'project',
+          //asi podemos pasar parametros de la ruta a nuestro componente 
+          props:true,
+          component: () => import('@/modules/projects/views/ProjectView.vue')
         }
       ]
     }
