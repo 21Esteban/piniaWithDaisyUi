@@ -1,27 +1,26 @@
-    <script setup lang="ts">
-    // @ts-ignore
-    import CustomModal from '@/modules/common/components/CustomModal.vue'
-    // @ts-ignore
-    import FabButton from '@/modules/common/components/FabButton.vue'
-    // @ts-ignore
-    import InputModal from '@/modules/common/components/InputModal.vue'
-    // @ts-ignore
-    import AddCircle from '@/modules/common/icons/AddCircle.vue'
-    // @ts-ignore
-    import ModalIcon from '@/modules/common/icons/ModalIcon.vue'
-    import { ref } from 'vue'
-    import { useProjectsStore } from '../store/projects.store'
-    
-    const modalOpen = ref(false)
-    const customModal = ref(false)
-    //importamos nuestro store
-    const projectsStore = useProjectsStore();
-    
-    
-    function chageModalState() {
-      modalOpen.value = false
-    }
-    </script>
+<script setup lang="ts">
+// @ts-ignore
+import CustomModal from '@/modules/common/components/CustomModal.vue'
+// @ts-ignore
+import FabButton from '@/modules/common/components/FabButton.vue'
+// @ts-ignore
+import InputModal from '@/modules/common/components/InputModal.vue'
+// @ts-ignore
+import AddCircle from '@/modules/common/icons/AddCircle.vue'
+// @ts-ignore
+import ModalIcon from '@/modules/common/icons/ModalIcon.vue'
+import { ref } from 'vue'
+import { useProjectsStore } from '../store/projects.store'
+
+const modalOpen = ref(false)
+const customModal = ref(false)
+//importamos nuestro store
+const projectsStore = useProjectsStore()
+
+function chageModalState() {
+  modalOpen.value = false
+}
+</script>
 <template>
   <div class="overflow-x-auto w-full">
     <table class="table">
@@ -36,12 +35,16 @@
       </thead>
       <tbody>
         <!-- row 2 -->
-        <tr class="hover" v-for="(project,index) in projectsStore.projectList" :key="project.id">
-          <th>{{ index+1 }}</th>
+        <tr class="hover" v-for="(project, index) in projectsStore.projectList" :key="project.id">
+          <th>{{ index + 1 }}</th>
           <td>{{ project.name }}</td>
-          <td>{{project.task.length}}</td>
+          <td>{{ project.task.length }}</td>
           <td>
-            <progress class="progress progress-info w-56" value="10" max="100"></progress>
+            <progress
+              class="progress progress-info w-56"
+              :value="project.taskCompleted.length"
+              :max="project.task.length"
+            ></progress>
           </td>
         </tr>
       </tbody>
@@ -76,6 +79,5 @@
     </FabButton>
   </div>
 </template>
-
 
 <style></style>

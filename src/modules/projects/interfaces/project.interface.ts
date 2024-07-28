@@ -2,6 +2,7 @@ export interface Project{
     id:string;
     name:string;
     task:Task[]
+    taskCompleted : Task[]
 }
 
 export interface Task{

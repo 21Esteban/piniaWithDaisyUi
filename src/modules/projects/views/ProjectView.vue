@@ -16,7 +16,18 @@
             <tbody>
               <!-- row 2 -->
               <tr class="hover" v-for="task in projectName?.task" :key="task.id">
-                <th>{{ task.id }}</th>
+                <th>
+                  <div class="form-control">
+                    <label class="cursor-pointer label">
+                      <input
+                        type="checkbox"
+                        :checked="!!task.completedAt"
+                        class="checkbox checkbox-success"
+                        @click="completeTask(task.id, projectName.id)"
+                      />
+                    </label>
+                  </div>
+                </th>
                 <td>{{ task.name }}</td>
                 <td>{{ task.completedAt }}</td>
                 <td>Purple</td>
@@ -34,7 +45,7 @@
                 </td>
                 <td></td>
                 <td>
-                  <button class="btn btn-accent" @click="sendForm" >guardar</button>
+                  <button class="btn btn-accent" @click="sendForm">guardar</button>
                 </td>
               </tr>
             </tbody>
@@ -48,7 +59,7 @@
 <script setup lang="ts">
 // @ts-ignore
 import BreadCrumbs from '@/modules/common/components/BreadCrumbs.vue'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useProjectsStore } from '../store/projects.store'
 // import type { Project } from '../interfaces/project.interface'
 // import { useRoute } from 'vue-router'
@@ -67,11 +78,16 @@ const projectName = computed(() => {
   })
 })
 
-function sendForm(){
-  projectStore.addTaskToProject(inputText.value,props.id)
-  inputText.value=""
+function sendForm() {
+  projectStore.addTaskToProject(inputText.value, props.id)
+  inputText.value = ''
 }
 
+function completeTask(taskId: string, projectId: string) {
+  // console.log(taskId);
+  // console.log(projectId);
+  projectStore.toggleTask(taskId, projectId)
+}
 
 // const project = ref<Project | null>()
 // const route = useRoute()
