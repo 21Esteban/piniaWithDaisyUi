@@ -1,3 +1,7 @@
+![image](https://github.com/user-attachments/assets/aea12da7-4cbc-4b13-8241-6c9ce6a4cc59)
+![image](https://github.com/user-attachments/assets/896d5c23-277e-4904-9fae-5a330e64da12)
+
+
 # slots-pinia
 
 This template should help get you started developing with Vue 3 in Vite.
